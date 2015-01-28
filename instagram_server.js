@@ -33,7 +33,7 @@ var getTokenResponse = function (query) {
         params: {
           code: query.code,
           client_id: config.clientId,
-          scope: config.scope
+          scope: config.scope,
           redirect_uri: OAuth._redirectUri("instagram", config),
           client_secret: OAuth.openSecret(config.secret),
           grant_type: 'authorization_code'
