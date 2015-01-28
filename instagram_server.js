@@ -24,12 +24,16 @@ var getTokenResponse = function (query) {
     throw new ServiceConfiguration.ConfigError();
 
   var response;
+  if (!config.scope)
+    config['scope'] = 'basic';
+
   try {
     response = HTTP.post(
       "https://api.instagram.com/oauth/access_token", {
         params: {
           code: query.code,
           client_id: config.clientId,
+          scope: config.scope
           redirect_uri: OAuth._redirectUri("instagram", config),
           client_secret: OAuth.openSecret(config.secret),
           grant_type: 'authorization_code'
